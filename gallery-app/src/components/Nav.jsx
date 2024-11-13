@@ -25,3 +25,5 @@ export default Nav;
 <Route path="/" element={<Photolist />} />
 <Route path="/" element={<Photolist />} />
 </Routes>*/
+
+//This page does not need editing

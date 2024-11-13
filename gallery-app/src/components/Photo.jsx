@@ -3,11 +3,18 @@ import React from "react";
 
 
 //A Photo component that will display an li and img element.
-const Photo = (photo) => {
+const Photo = ({photo}) => {
   return (
-    <li key={photo.id}>
+      <li>
+        <img 
+        src={`https://live.staticflickr.com/${photo.server-id}/${photo.id}_${photo.secret}.jpg`}
+        alt={photo.title} 
+        />
+        <p>{photo.title}</p>
+      </li>
+    /*<li key={photo.id}>
       <img src={photo.url} title={photo.title} alt={photo.title} />
-    </li>
+    </li>*/
   );
 };
 export default Photo;
