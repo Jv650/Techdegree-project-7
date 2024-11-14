@@ -8,26 +8,27 @@ import { Route, Routes, Navigate } from "react-router-dom";
 import Search from "./components/Search";
 import Nav from "./components/Nav";
 import Photolist from "./components/Photolist";
+import NotFound from "./components/NotFound";
 
 function App() {
   //const [count, setCount] = useState(0)
   const [photos, setPhotos] = useState([]);
-  const [query, setQuery] = useState("");
+  const [query, setQuery] = useState("cats");
   const [loading, setLoading] = useState(true);
 
-  const apiKey = "0729021a46f80230ae32d71d4a050501";
+  const ApiKey = "0729021a46f80230ae32d71d4a050501";
 
-  useEffect(() => {
+  const fetchData = (searchText) => {
     setLoading(true);
     let activeFetch = true;
     axios
       .get(
-        `https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=0729021a46f80230ae32d71d4a050501&tags=${query}&per_page=24&format=json&nojsoncallback=1`
+        `https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=0729021a46f80230ae32d71d4a050501&tags=${searchText}&per_page=24&format=json&nojsoncallback=1`
       )
       .then((response) => {
         if (activeFetch) {
-          setPhotos(response.data.photos.photo); //maybe need to change to photos.photo
-          //console.log(response.data.photos.photo);
+          setPhotos(response.data.photos.photo); //maybe need to remove photos.photo?
+          console.log(response.data.photos.photo);
           setLoading(false);
         }
       })
@@ -37,6 +38,9 @@ function App() {
     return () => {
       activeFetch = false;
     };
+  };
+  useEffect(() => {
+    fetchData(query);
   }, [query]);
 
   const handleQueryChange = (searchText) => {
@@ -84,7 +88,7 @@ useEffect(() => {
       <Search changeQuery={handleQueryChange} />
       <Nav />
       <Routes>
-        <Route path="/" element={<Navigate replace to="/dogs" />} />
+        <Route path="/" element={<Navigate /*replace to="/"*/ />} />
         <Route
           path="cats"
           element={
@@ -114,6 +118,7 @@ useEffect(() => {
             />
           }
         />
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </div>
   );
