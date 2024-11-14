@@ -7,7 +7,7 @@ const Photo = ({photo}) => {
   return (
       <li>
         <img 
-        src={`https://live.staticflickr.com/${photo.server-id}/${photo.id}_${photo.secret}.jpg`}
+        src={`https://live.staticflickr.com/${photo.server}/${photo.id}_${photo.secret}_q.jpg`}
         alt={photo.title} 
         />
         <p>{photo.title}</p>

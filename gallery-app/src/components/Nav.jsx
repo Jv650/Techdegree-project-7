@@ -11,9 +11,9 @@ const Nav = () => {
   return (
     <nav className="main-nav">
         <ul>
-          <li><a><NavLink to="cats" href='#'>Cats</NavLink></a></li>
-          <li><a><NavLink to="dogs" href='#'>Dogs</NavLink></a></li>
-          <li><a><NavLink to="computers" href='#'>Computers</NavLink></a></li>
+          <li><NavLink to="cats" >Cats</NavLink></li>
+          <li><NavLink to="dogs" >Dogs</NavLink></li>
+          <li><NavLink to="computers" >Computers</NavLink></li>
         </ul>
       </nav>
   );
