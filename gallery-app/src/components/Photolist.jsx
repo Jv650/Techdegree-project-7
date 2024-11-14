@@ -32,7 +32,8 @@ const Photolist = ({ title, photos }) => {
     photoElement = photos.map((photo) => (
       <Photo
         key={photo.id}
-        url={`https://live.staticflickr.com/${photo.server}/${photo.id}_${photo.secret}.jpg`} //or just photo={photo}
+        src={photo.url}
+        //url={`https://live.staticflickr.com/${photo.server}/${photo.id}_${photo.secret}.jpg`} //or just photo={photo}
       />
     ));
   } else {

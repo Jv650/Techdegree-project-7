@@ -13,7 +13,7 @@ import NotFound from "./components/NotFound";
 function App() {
   //const [count, setCount] = useState(0)
   const [photos, setPhotos] = useState([]);
-  const [query, setQuery] = useState("cats");
+  const [query, setQuery] = useState("");
   const [loading, setLoading] = useState(true);
 
   const ApiKey = "0729021a46f80230ae32d71d4a050501";
@@ -87,25 +87,20 @@ useEffect(() => {
     <div className="container">
       <Search changeQuery={handleQueryChange} />
       <Nav />
+      <Photolist photos={photos} />
       <Routes>
-        <Route path="/" element={<Navigate /*replace to="/"*/ />} />
+        <Route path="/" element={<Navigate to="/dogs" />} />
         <Route
           path="cats"
-          element={
-            <Photolist photos={photos} loading={loading} title={query} />
-          }
+          element={<Photolist photos={photos} title={query} />}
         />
         <Route
           path="dogs"
-          element={
-            <Photolist photos={photos} loading={loading} title={query} />
-          }
+          element={<Photolist photos={photos} title={query} />}
         />
         <Route
           path="computers"
-          element={
-            <Photolist photos={photos} loading={loading} title={query} />
-          }
+          element={<Photolist photos={photos} title={query} />}
         />
         <Route
           path="/search/:query"
@@ -113,12 +108,12 @@ useEffect(() => {
             <Photolist
               photos={photos}
               changeQuery={handleQueryChange}
-              loading={loading}
               title={query}
             />
           }
         />
-        <Route path="*" element={<NotFound />} />
+        <Route path="*" element={<Navigate replace to="/404" />} />
+        <Route path="/404" element={<NotFound />} />
       </Routes>
     </div>
   );
