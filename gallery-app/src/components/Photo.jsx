@@ -1,13 +1,17 @@
 import React from "react";
 //import axios from "axios";
+//import { useParams } from "react-router-dom";
 
 //A Photo component that will display an li and img element.
-const Photo = ({ photo, server, id, secret, title }) => {
+const Photo = ({ title, url, id }) => {
   return (
     <li>
       <img
-        src={`https://live.staticflickr.com/${photo.server}/${photo.id}_${photo.secret}.jpg`} //_q //or index url
-        alt={title}
+        src={url} //url={`https://live.staticflickr.com/${photo.server}/${photo.id}_${photo.secret}.jpg`} //_q //or index url
+        title={title}
+        key={id}
+        //photo={photo}
+        //url={`https://live.staticflickr.com/${photo.server}/${photo.id}_${photo.secret}.jpg`}
       />
       <p>{title}</p>
     </li>
@@ -16,6 +20,7 @@ const Photo = ({ photo, server, id, secret, title }) => {
     </li>*/
   );
 };
+
 export default Photo;
 
 //NOTE FOR MORNING: CONTINUE WORKING ON FIGURING OUT THE COMPONENTS

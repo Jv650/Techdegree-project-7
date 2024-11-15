@@ -2,7 +2,35 @@ import React from "react";
 import Photo from "./Photo"; //components
 import NotFound from "./NotFound";
 
-//A PhotoList component that will render all of your Photo components.
+//A PhotoList component that will render all Photo components.
+const Photolist = ({ photos, title }) => {
+  //const results = props.photos; //photos.photo; //destructuring
+  let photoElement;
+  if (photos.length > 0) {
+    photoElement = photos.map((photo) => (
+      <Photo
+        key={photo.id}
+        photos={photo}
+        title={photo.title}
+        url={`https://live.staticflickr.com/${photo.server}/${photo.id}_${photo.secret}.jpg`} //or just photo={photo}
+      />
+    ));
+  } else {
+    photoElement = <NotFound />;
+  }
+
+  return (
+    <div className="photo-container">
+      <h2>{title}</h2>
+      <ul>{photoElement}</ul>
+    </div>
+  );
+};
+
+export default Photolist;
+
+//key={photos.photo.id} url={`https://live.staticflickr.com/${server-id}/${id}_${secret}.jpg`}
+
 /*const Photolist = ({photos}) => {
     function
         props.map((photo) => (
@@ -24,30 +52,3 @@ import NotFound from "./NotFound";
     </ul>
   );
 }*/
-
-const Photolist = ({ title, photos }) => {
-  //const results = response.data.photos.photo;
-  let photoElement;
-  if (photos.length > 0) {
-    photoElement = photos.map((photo) => (
-      <Photo
-        key={photo.id}
-        src={photo.url}
-        //url={`https://live.staticflickr.com/${photo.server}/${photo.id}_${photo.secret}.jpg`} //or just photo={photo}
-      />
-    ));
-  } else {
-    photoElement = <NotFound />;
-  }
-
-  return (
-    <div className="photo-container">
-      <h2>{title}</h2>
-      <ul>{photoElement}</ul>
-    </div>
-  );
-};
-
-export default Photolist;
-
-//key={photos.photo.id} url={`https://live.staticflickr.com/${server-id}/${id}_${secret}.jpg`}

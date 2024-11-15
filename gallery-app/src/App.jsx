@@ -13,7 +13,7 @@ import NotFound from "./components/NotFound";
 function App() {
   //const [count, setCount] = useState(0)
   const [photos, setPhotos] = useState([]);
-  const [query, setQuery] = useState("");
+  const [query, setQuery] = useState("cats");
   const [loading, setLoading] = useState(true);
 
   const ApiKey = "0729021a46f80230ae32d71d4a050501";
@@ -40,14 +40,54 @@ function App() {
     };
   };
   useEffect(() => {
-    fetchData(query);
-  }, [query]);
+    fetchData(query); //query
+  }, [query]); //[query]
 
   const handleQueryChange = (searchText) => {
     setQuery(searchText);
   };
 
-  /*const fetchData = async(query) => {
+  return (
+    //element={<Navigate to='dogs'/> //data={} maybe add this inside the photolist element to specify cat, dog, comp
+    <div className="container">
+      <Search changeQuery={handleQueryChange} /> {/* <Search */}
+      <Nav changeQuery={handleQueryChange} />
+      {loading ? <p>Loading...</p> : <Photolist photos={photos} />}
+      <Photolist photos={photos} title={query} />{" "}
+      <Routes>
+        <Route path="/" element={fetchData} />
+        <Route
+          path="cats"
+          element={<Navigate to="/cats" changeQuery={handleQueryChange} />}
+        />
+        <Route
+          path="dogs"
+          element={<Navigate to="/dogs" changeQuery={handleQueryChange} />}
+        />
+        <Route
+          path="computers"
+          element={<Navigate to="/computers" changeQuery={handleQueryChange} />}
+        />
+        <Route
+          path="/search/:query"
+          element={
+            <Photolist
+              photos={photos}
+              changeQuery={handleQueryChange}
+              title={query}
+            />
+          }
+        />
+        <Route path="*" element={<Navigate replace to="/404" />} />
+        <Route path="/404" element={<Navigate replace to={<NotFound />} />} />
+      </Routes>
+    </div>
+  );
+}
+
+export default App;
+
+/*const fetchData = async(query) => {
     //Api url
     const url = `https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=0729021a46f80230ae32d71d4a050501&tags=${query}&per_page=24&format=json&nojsoncallback=1`; 
 
@@ -72,7 +112,7 @@ useEffect(() => {
   fetchData(query);
 }, [query]);*/
 
-  /* 
+/* 
     useEffect(() => {
     fetch(url)
     .then(response => response.json())
@@ -81,42 +121,3 @@ useEffect(() => {
 
   }, [query]);
 */
-
-  return (
-    //element={<Navigate to='dogs'/> //data={} maybe add this inside the photolist element to specify cat, dog, comp
-    <div className="container">
-      <Search changeQuery={handleQueryChange} />
-      <Nav />
-      <Photolist photos={photos} />
-      <Routes>
-        <Route path="/" element={<Navigate to="/dogs" />} />
-        <Route
-          path="cats"
-          element={<Photolist photos={photos} title={query} />}
-        />
-        <Route
-          path="dogs"
-          element={<Photolist photos={photos} title={query} />}
-        />
-        <Route
-          path="computers"
-          element={<Photolist photos={photos} title={query} />}
-        />
-        <Route
-          path="/search/:query"
-          element={
-            <Photolist
-              photos={photos}
-              changeQuery={handleQueryChange}
-              title={query}
-            />
-          }
-        />
-        <Route path="*" element={<Navigate replace to="/404" />} />
-        <Route path="/404" element={<NotFound />} />
-      </Routes>
-    </div>
-  );
-}
-
-export default App;
