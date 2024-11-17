@@ -11,6 +11,39 @@ const Nav = ({ handleQueryChange }) => {
     <nav className="main-nav">
       <ul>
         <li>
+          <NavLink to="cats" onClick={() => handleQueryChange()}>
+            Cats
+          </NavLink>
+        </li>
+        <li>
+          <NavLink to="dogs" onClick={() => handleQueryChange()}>
+            Dogs
+          </NavLink>
+        </li>
+        <li>
+          <NavLink to="computers" onClick={() => handleQueryChange()}>
+            Computers
+          </NavLink>
+        </li>
+      </ul>
+    </nav>
+  );
+};
+
+export default Nav;
+
+/*<Routes>
+<Route path="/" element={<Photolist />} />
+<Route path="/" element={<Photolist />} />
+</Routes>*/
+
+//This page does not need editing
+
+/*const Nav = ({ handleQueryChange }) => {
+  return (
+    <nav className="main-nav">
+      <ul>
+        <li>
           <NavLink to="cats" onClick={() => handleQueryChange("cats")}>
             Cats
           </NavLink>
@@ -31,13 +64,4 @@ const Nav = ({ handleQueryChange }) => {
       </ul>
     </nav>
   );
-};
-
-export default Nav;
-
-/*<Routes>
-<Route path="/" element={<Photolist />} />
-<Route path="/" element={<Photolist />} />
-</Routes>*/
-
-//This page does not need editing
+}; */

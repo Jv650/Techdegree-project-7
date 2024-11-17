@@ -1,5 +1,5 @@
 import React, { useRef } from "react";
-//import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 //A Search component for handling user queries.
 /*const Search = (props) => {
@@ -49,10 +49,12 @@ export default Search;
 
 const Search = (props) => {
   const searchText = useRef(null);
+  const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
     props.changeQuery(searchText.current.value);
+    navigate(`/search/${searchText.current.value}`);
     e.currentTarget.reset();
   };
 
