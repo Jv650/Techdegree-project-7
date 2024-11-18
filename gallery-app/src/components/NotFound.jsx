@@ -1,5 +1,4 @@
-//import React from "react";
-
+//NotFound component fir whenever a search is not found
 const NotFound = () => {
   return (
     <li className="not-found">
