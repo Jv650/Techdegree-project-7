@@ -1,4 +1,5 @@
-import React, { useRef } from "react";
+/* eslint-disable react/prop-types */
+import { useRef } from "react";
 import { useNavigate } from "react-router-dom";
 
 //A Search component for handling user queries.
@@ -55,6 +56,7 @@ const Search = (props) => {
     e.preventDefault();
     props.changeQuery(searchText.current.value);
     navigate(`/search/${searchText.current.value}`);
+
     e.currentTarget.reset();
   };
 

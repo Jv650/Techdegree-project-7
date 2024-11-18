@@ -1,9 +1,9 @@
 //Access react functionalities
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
 import "./App.css";
-import { BrowserRouter } from "react-router-dom";
 import { Route, Routes, Navigate } from "react-router-dom";
+import apiKey from "./config.js";
 
 //App components
 import Search from "./components/Search";
@@ -17,8 +17,6 @@ function App() {
   const [photos, setPhotos] = useState([]); //sets variable photos to initial value of an empty array
   const [query, setQuery] = useState(); //sets search query variable to an empty state
   const [loading, setLoading] = useState(true); //sets loading variable to initial state of true - so loading will be yes/true its loading
-
-  const apiKey = "0729021a46f80230ae32d71d4a050501";
 
   //fetching the data from the API using axios
   const fetchData = (searchText) => {
@@ -63,7 +61,7 @@ function App() {
       const query = path.replace("/search/", "");
       fetchData(query);
     }
-  }, [location.pathname]); //location.pathname
+  }, [location.pathname]);
 
   //Variable will handle any text inputted in the search field and will set the query
   const handleQueryChange = (searchText) => {
@@ -75,7 +73,8 @@ function App() {
     //element={<Navigate to='dogs'/> //data={} maybe add this inside the photolist element to specify cat, dog, comp
     <div className="container">
       <Search changeQuery={handleQueryChange} /> {/* <Search */}
-      <Nav changeQuery={handleQueryChange} />
+      <Nav />
+      {loading ? <p>Loading...</p> : null}
       <Routes>
         <Route path="/" element={<Navigate to="cats" />} />
         <Route

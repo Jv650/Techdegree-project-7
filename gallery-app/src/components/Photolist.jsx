@@ -1,4 +1,4 @@
-import React from "react";
+/* eslint-disable react/prop-types */
 import Photo from "./Photo"; //components
 import NotFound from "./NotFound";
 import { useLocation } from "react-router-dom";
