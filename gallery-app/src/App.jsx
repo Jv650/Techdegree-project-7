@@ -15,7 +15,7 @@ import NotFound from "./components/NotFound";
 function App() {
   //setting default states to functional using useState
   const [photos, setPhotos] = useState([]); //sets variable photos to initial value of an empty array
-  const [query, setQuery] = useState(); //sets search query variable to an empty state
+  const [query, setQuery] = useState("cats"); //sets search query variable to an empty state
   const [loading, setLoading] = useState(true); //sets loading variable to initial state of true - so loading will be yes/true its loading
 
   //fetching the data from the API using axios
