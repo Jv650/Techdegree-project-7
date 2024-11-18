@@ -24,6 +24,7 @@ function App() {
   const fetchData = (searchText) => {
     //apply setLoading state to default true - it will load
     setLoading(true);
+
     let activeFetch = true;
     axios
       //promises
@@ -62,7 +63,6 @@ function App() {
       const query = path.replace("/search/", "");
       fetchData(query);
     }
-    fetchData(query);
   }, [location.pathname]); //location.pathname
 
   //Variable will handle any text inputted in the search field and will set the query
